@@ -8,6 +8,7 @@ function LandingPage() {
     return (
         <Fragment>
             <Link to='/register'>REGISTER</Link>
+            <Link to='/login'>login</Link>
         </Fragment>
     )
 }
