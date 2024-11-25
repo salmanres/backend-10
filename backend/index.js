@@ -31,6 +31,8 @@ app.get('/getdata', async (req, res) => {
     res.status(201).send(data);
 })
 
+
+
 app.post('/login', async (req, res) => {
     const data = req.body;
     try {
@@ -48,8 +50,36 @@ app.post('/login', async (req, res) => {
 
 })
 
+app.put('/editdata/:id', async (req, res) => {
+    const { id } = req.params;
+    const udata = req.body;
+    try {
+        const data = await userData.findByIdAndUpdate(id, udata, { new: 'true' });
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log(error);
+    }
 
-app.put('/editdata', async(req, res)=>{
+});
+
+
+app.get('/getsingledata/:id', async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    try {
+        const data = await userData.findOne({ _id: id });
+        res.status(220).send(data);
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
+//   delete dadta api
+
+app.delete('/deletedata', async (req,res)=>{
+    const {id} = req.body;
     
 })
 
