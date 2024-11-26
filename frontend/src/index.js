@@ -10,6 +10,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import LoginPage from './dashboard/LoginPage';
 import UserList from './dashboard/UserList';
 import EditData from './dashboard/EditData';
+import Whatsapp from './dashboard/Whatsapp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path='/login' element={<LoginPage />} />
         <Route path='/userlist' element={<UserList />} />
         <Route path='/editdata/:id' element={<EditData />} />
+        <Route path='/whatsapp' element={<Whatsapp />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

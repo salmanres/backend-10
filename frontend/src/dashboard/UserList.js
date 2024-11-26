@@ -18,9 +18,9 @@ function UserList() {
     const deletedata = async (id) => {
         console.log(id);
         try {
-            const response = await axios.delete(`http://localhost:3500/deletedata`, id);
+            const response = await axios.delete(`http://localhost:3500/deletedata/${id}`);
             console.log(response.data);
-
+            getData();
         } catch (err) {
             console.log(err);
         }

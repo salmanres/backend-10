@@ -1,16 +1,23 @@
 const express = require("express");
 const app = express();
-const port = 3500;
+require('dotenv').config();
+const port = process.env.PORT || 4500;
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const userData = require("./schema/UserSchema");
 require('./database/Connection');
+const path = require('path');
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "ejs")
+app.use(express.static(path.join(__dirname, "public")));
+
 
 app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("my app");
+    const collection = ['book1', 'book2', 'book3'];
+    res.render('index', {collection});
 });
 
 app.post('/register', async (req, res) => {
@@ -27,7 +34,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.get('/getdata', async (req, res) => {
-    const data = await userData.find();
+    const data = await userData.find({"fullname": {"$regex": "Cha", "$options": "i"}});
     res.status(201).send(data);
 })
 
@@ -78,9 +85,14 @@ app.get('/getsingledata/:id', async (req, res) => {
 
 //   delete dadta api
 
-app.delete('/deletedata', async (req,res)=>{
-    const {id} = req.body;
-    
+app.delete('/deletedata/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await userData.findByIdAndDelete(id);
+        res.status(222).json({ message: "deleted!" });
+    } catch (err) {
+        console.log(err);
+    }
 })
 
 
