@@ -1,0 +1,576 @@
+NODE JS
+Node.js is a powerful, open-source, cross-platform runtime environment that allows you to execute JavaScript code outside of a web browser and has become a popular choice for building scalable and efficient server-side applications
+KEY FEATURES
+Event-Driven Architecture: Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient. This is particularly useful for building real-time applications.
+Single Programming Language: With Node.js, you can use JavaScript for both client-side and server-side development, which simplifies the development process.
+NPM (Node Package Manager): Node.js comes with NPM, the world's largest software registry, which allows you to easily manage and share packages of code.
+Asynchronous Programming: Node.js supports asynchronous programming, which helps in handling multiple operations concurrently without blocking the execution.
+USE CASES
+Web Servers: Node.js is commonly used to build web servers and APIs. Its non-blocking I/O model makes it ideal for handling multiple requests simultaneously.
+Real-Time Applications: Applications like chat apps, online gaming, and collaboration tools benefit from Node.js's real-time capabilities.
+Microservices: Node.js is well-suited for building microservices architectures due to its lightweight nature and ability to handle multiple connections efficiently.
+HISTORY OF NODE JS
+2009: Node.js was created by Ryan Dahl and first released on May 27, 2009. Dahl was inspired by the limitations of the Apache HTTP Server, particularly its inability to handle many concurrent connections efficiently
+NODE JS ARCHITECTURE
+To manage several concurrent clients, Node.js employs a “Single Threaded Event Loop” design. The JavaScript event-based model and the JavaScript callback mechanism are employed in the Node.js Processing Model.
+It employs two fundamental concepts:
+1.	Asynchronous model: allows tasks to run independently and without blocking each other
+2.	Non-blocking of I/O operations: allows a single process to handle multiple requests simultaneously
+BLOCKING VS NON-BLOCKING OPERATIONS
+-	Blocking operations transfer control to the called function, meaning the caller waits for the callee to finish and return control.
+-	Non-Blocking operations, conversely, do not wait for a function to complete its task. The caller can continue with other tasks without handing over control.
+EVENT LOOP IN NODE JS
+In Node, the Event Loop is a mechanism that handles asynchronous operations. It allows NODE to perform non-blocking I/O operations despite the fact that JavaScript is single-threaded. It continuously checks the call stack and message queue, executes tasks from stack processing asynchronous operations.
+						Or
+An event loop is an endless loop, which waits for tasks, executes them, and then sleeps until it receives more tasks.
+NODE JS vs OTHER SERVER-SIDE FRAMEWORKS
+
+LANGUAGE
+	
+NODE JS	
+PYTHON	
+JAVA
+
+
+
+KEY FEATURES	
+Non-blocking I/O, event-driven architecture, single-threaded, high performance with V8 engine, large ecosystem with NPM
+	
+Batteries-included framework, ORM, admin interface, strong security features, scalability.	
+Microservices architecture, embedded servers, extensive ecosystem, strong security features.
+
+
+
+USE CASES	
+Real-time applications (e.g., chat apps, online gaming), APIs, microservices, server-side applications
+	
+Web applications, APIs, content management systems.	
+Enterprise applications, microservices, APIs.
+
+
+
+
+PROS	
+Fast execution, efficient handling of concurrent requests, unified language for both client and server, large community and ecosystem
+	
+Rapid development, clean and readable code, strong community support, built-in admin panel.
+	
+Robust and scalable, strong type system, extensive tooling and libraries, good for large-scale applications.
+
+
+
+
+CONS	
+Single-threaded nature can be a limitation for CPU-intensive tasks, callback hell (though mitigated by Promises and async/await)
+	
+Can be overkill for small projects, less performant for real-time applications compared to Node.js.
+	
+Verbose syntax, longer development time compared to Node.js, higher memory usage.
+
+IO.JS
+io.js was an open-source JavaScript runtime environment that was initially created as a fork of Node.js. It was developed by a group of Node.js contributors who wanted to accelerate the development and release cycle of the platform.
+V8 JAVASCRIPT ENGINE
+The V8 JavaScript engine is an open-source JavaScript engine developed by Google. It was initially released in 2008 and is used in Google Chrome and Node.js.
+Key Features
+-	Just in time (JIT) Compilation
+-	High performance 
+-	Garbage collection
+-	ECMA Script support
+-	fast and efficient JavaScript execution for web applications
+-	Server-side development
+WHY SERVER SIDE JAVASCRIPT
+Server-side JavaScript, particularly with Node.js, offers several advantages that make it a popular choice for developers with following benefits
+-	Unified language
+-	Non-blocking I/O
+-	Scalability
+-	Rich ecosystem
+-	Performance
+-	Useful to build web servers and RESTful APIs due to its efficiency and scalability
+-	Real-time application development
+-	Microservice architecture
+RESTful APIs / REST APIs
+A RESTful API, or REST API, is an application programming interface that uses HTTP requests to interact with web services. REST stands for Representational State Transfer, which is an architectural style for designing networked applications. Here are some key points about RESTful APIs:
+-	Stateless: Each request from a client to a server must contain all the information needed to understand and process the request. The server does not store any client context between requests.
+-	Client-Server Architecture: RESTful APIs follow a client-server architecture where the client and server are separate entities that communicate over a network.
+-	Resource-Based: In RESTful APIs, resources (such as data objects) are identified by URLs. Each resource can be manipulated using standard HTTP methods.
+-	Stateless Communication: Each request from a client to a server must contain all the information needed to understand and process the request. The server does not store any client context between requests.
+-	Cacheable: Responses from the server can be marked as cacheable or non-cacheable to improve performance.
+HTTP MODULE
+The http module in Node.js is a core module that allows you to create and manage HTTP servers and clients. It provides a set of functions and classes to handle HTTP requests and responses.
+-	Create HTTP Servers: Easily create HTTP servers to handle client requests.
+-	Handle HTTP Requests and Responses: Manage incoming requests and send responses.
+-	Support for HTTP Methods: Handle various HTTP methods like GET, POST, PUT, DELETE, etc.
+-	Streaming: Stream data to and from the server.
+HTTP OBJECTS
+-	Req
+-	Res 
+HTTP METHODS
+-	GET: Retrieve data from the server.
+-	POST: Send data to the server to create a new resource.
+-	PUT: Update an existing resource on the server.
+-	DELETE: Remove a resource from the server.
+-	PATCH: Used to apply partial modifications to a resource
+RESPONSE CODES
+HTTP response codes are standardized codes that indicate the result of a client's request to a server. They are grouped into five categories:
+1xx: Informational
+-	100 Continue
+-	101 Switching Protocols
+2xx: Success
+-	200 OK
+-	201 Created
+-	204 No Content
+3xx: Redirection
+-	301 Moved Permanently
+-	302 Found
+-	304 Not Modified
+4xx: Client Errors
+-	400 Bad Request
+-	401 Unauthorized
+-	403 Forbidden
+-	404 Not Found
+-	409 Conflict
+5xx: Server Errors
+-	500 Internal Server Error
+-	502 Bad Gateway
+-	503 Service Unavailable
+-	504 Gateway Timeout
+EXPRESS JS
+Express JS a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications. Here are some key points to help you understand Express.js:
+FEATURES
+-	Minimal and Flexible: Express.js is designed to be minimalistic, providing only the essential features needed to build web applications. This allows developers to add only the components they need, making it highly flexible.
+-	Middleware: Express.js uses middleware functions to handle requests and responses. Middleware functions can perform various tasks, such as logging, authentication, and data parsing, before passing control to the next middleware function.
+-	Routing: Express.js provides a powerful routing mechanism that allows you to define routes for different HTTP methods and URL patterns. This makes it easy to handle different types of requests and organize your application.
+-	Templating: Express.js supports various templating engines, such as Pug, EJS, and Handlebars, which allow you to generate dynamic HTML content.
+-	Error Handling: Express.js includes built-in error handling capabilities, making it easier to manage and respond to errors in your application.
+MIDDLEWARE
+Middleware functions in Express.js are functions that have access to the request object (req), the response object (res), and the next middleware function in the application's request-response cycle. These functions can perform various tasks, such as executing code, modifying the request and response objects, ending the request-response cycle, and calling the next middleware function in the stack.
+-	Application-Level Middleware
+-	Router-Level Middleware
+-	Error-Handling Middleware
+-	Built-In Middleware
+-	Third-Party Middleware
+Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
+express.json() middleware in Express.js is used to parse incoming requests with JSON payloads. It is a built-in middleware function that was introduced in Express 4.16.0, and it replaces the need for the body-parser middleware for parsing JSON.
+express.urlencoded() middleware in Express.js is used to parse incoming requests with URL-encoded payloads. This is particularly useful when dealing with form submissions.
+EXPRESS REQUEST PROCESSING
+-	Incoming Request: A client sends an HTTP request to the server.
+-	Routing: Express uses the routing mechanism to match the incoming request to a specific route handler.
+-	Middleware Execution: Middleware functions are executed in the order they are defined. These functions can modify the request and response objects or terminate the request-response cycle.
+-	Route Handler: Once the request matches a route, the route handler function is executed to process the request and send a response.
+-	Response: The server sends back an HTTP response to the client.
+MONGO DB
+UNDERSTANDING NoSQL DB
+NoSQL databases are designed to handle large volumes of data and diverse data types, offering flexibility, scalability, and high performance. Unlike traditional relational databases (SQL), NoSQL databases do not use fixed schemas, making them ideal for handling unstructured or semi-structured data. 
+KEY CHARACTERSTICS
+-	Schema Flexibility: NoSQL databases allow for dynamic schemas, meaning each record (or document) can have a different structure. This is particularly useful for applications that need to store diverse data types.
+-	Scalability: NoSQL databases are designed to scale out by distributing data across multiple servers. This horizontal scaling is more cost-effective and efficient for handling large datasets.
+-	High Performance: By avoiding complex joins and using simpler data models, NoSQL databases can achieve high performance for read and write operations.
+-	Distributed Architecture: Many NoSQL databases are built to run on clusters of machines, providing high availability and fault tolerance.
+ADVANTAGES OF NoSQL DBs
+-	Flexibility: Ability to handle various data types and structures without predefined schemas.
+-	Scalability: Designed to scale out horizontally, making it easier to handle large volumes of data.
+-	Performance: Optimized for high performance in read and write operations.
+-	Availability: Distributed architecture ensures high availability and fault tolerance.
+DISADVANTAGES OF NoSQL DBs
+-	Consistency: Some NoSQL databases sacrifice consistency for availability and partition tolerance (CAP theorem).
+-	Complexity: Managing and querying data can be more complex compared to SQL databases.
+-	Maturity: Some NoSQL databases are relatively new and may lack the maturity and stability of traditional SQL databases.
+SQL VS NoSQL DBs
+
+FEATURE
+	
+SQL	
+NoSQL
+
+DATA MODEL	
+tables	
+Documents
+
+
+SCHEMA
+	
+Fixed schema	
+Dynamic schema
+
+QUERY LANGUAGE
+	
+SQL	
+Varies (e.g., MongoDB uses BSON)
+
+
+TRANSACTIONS	
+ACID (Atomicity, Consistency, Isolation, Durability) compliant	
+BASE (Basically Available, Soft state, Eventual consistency) compliant
+
+
+SCALIBILITY	
+Vertical scaling	
+Horizontal scaling
+
+
+USE CASES	
+Complex queries, transactions	
+Flexible data models, high scalability
+
+
+UNDERSTANDING MONGO DB
+MongoDB is a popular NoSQL database known for its flexibility, scalability, and performance. MongoDB offers a flexible, scalable, and high-performance solution for managing large volumes of data. Its document-oriented approach and rich feature set make it suitable for a wide range of applications, from content management systems to real-time analytics.
+FEATURES
+-	Document-Oriented: MongoDB stores data in JSON-like documents, which makes it easy to work with complex data structures. Each document can have a different schema, allowing for flexibility.
+-	Schema Flexibility: Unlike traditional relational databases, MongoDB does not require a fixed schema. This means you can store different types of data in the same collection without predefined structures.
+-	Scalability: MongoDB is designed to scale out by distributing data across multiple servers. This horizontal scaling is achieved through sharding, which allows MongoDB to handle large volumes of data and high traffic.
+-	High Performance: MongoDB supports indexing, replication, and sharding, which contribute to its high performance and availability. Indexes improve query performance, while replication and sharding ensure data redundancy and distribution.
+-	Rich Query Language: MongoDB provides a powerful query language that supports a wide range of operations, including filtering, sorting, and aggregating data.
+CORE CONCEPTS
+-	Database: A container for collections. Each database has its own set of files on the file system.
+-	Collection: A group of MongoDB documents. Collections are analogous to tables in relational databases.
+-	Document: A record in a MongoDB collection. Documents are stored in BSON (Binary JSON) format and can have varying structures.
+-	Index: A special data structure that improves the speed of data retrieval operations on a collection.
+MONGO DB ATLAS
+MongoDB Atlas is a fully managed cloud database service provided by MongoDB. It simplifies the deployment, management, and scaling of MongoDB databases. Atlas handles the operational aspects, such as backups, monitoring, and scaling, allowing developers to focus on building applications.
+-	Features: Multi-cloud support, global clusters, high availability, security features, scalability, and performance optimization
+-	Use Cases: Ideal for developers who want to leverage MongoDB without managing the underlying infrastructure
+KEY DATA TYPES IN MONGO DB
+-	String: "name": "John Doe"
+-	Integer: "age": 30
+-	Boolean: true/false
+-	Double: "price": 19.99
+-	Array: "tags": ["mongodb", "database", "NoSQL"]
+-	Object: "address": {"street": "123 Main St", "city": "Anytown","state": "CA"}
+-	ObjectId: "id": ObjectId("507f1f77bcf86cd799439011")
+-	Date: "createdAt": ISODate("2023-04-05T14:30:00Z")
+-	Null:"middleName": null
+-	Binary Data: "fileData": BinData(0, "binary data here")
+-	Regular Expression: "pattern": /abc/i
+-	Timestamp: "lastUpdated": Timestamp(1627847267, 1)
+-	Min/Max Keys: Used to compare a value against the lowest and highest BSON elements.
+MONGO DB SHELL COMMANDS
+Here are some essential MongoDB shell commands using JavaScript to help you manage your MongoDB databases:
+Basic Commands
+-	Show Databases: show dbs
+-	Switch to a Database: use databasename
+-	Show Collections: show collections
+CRUD Operations
+-	Create (Insert): db.collectionname.insertOne({ name: "John Doe", email: "john@example.com", age: 30 });
+-	Insert multiple documents: db.collectionname.insertMany([{ name: "Jane Doe", email: "jane@example.com", age: 25 }, { name: "Alice", email: "alice@example.com", age: 28 }]);
+-	Read (Find):
+Find all documents in a collection: db. collectionname.find();
+Find documents with a specific condition: db.collectionname.find({ age: { $gt: 25 } });
+-	Find a single document: db. collectionname.findOne({ name: "John Doe" });
+-	Update:
+Update a single document: db.collectionname.updateOne({ name: "John Doe" }, { $set: { age: 31 } })
+Update multiple documents: db. collectionname.updateMany({ age: { $lt: 30 } }, { $set: { status: "young" } });
+-	Delete:
+Delete a single document: db.collectionname.deleteOne({ name: "John Doe" })
+Delete multiple documents: db.collectionname.deleteMany({ age: { $lt: 30 } });
+-	Drop a Collection: db.collectionname.drop();
+-	Drop a DB: db.databasename.drop();
+MONGO DB OPERATORS
+-	$gte	//	greater then/equal to
+-	$gt	//	greater then
+-	$eq	//	equal to 
+-	$in	//	matches value in specified array
+-	$lt	//	less then
+-	$ne	//	not equal
+-	$nin	//	none of the values specified in array
+LOGICAL OPERATORS
+-	$and	//	joins query classes and returns with a match
+db.collectionname.find({"$and":[{"age":{"$gt":25}},{"isActive":true}]})
+-	$not	//	inverts the effects of a query and returns do not match
+db.student.find({ "age": { "$not": { "$gt": 25 } } })
+db.collectionname.find({ age: { $not: { $gt: 25 } } });
+-	$nor	//	joins query classes with a logical nor returns that fail to match both               classes
+db.collectionname.find({ $nor: [ { age: { $lt: 25 } }, { isActive: true } ] });
+-	$or	//	join query classes with return of either classes
+db.userdata.find({ $or: [ { age: { $lt: 25 } }, { isActive: true } ] });
+INDEXING 
+An index in a database is like an index in a book. It helps you find the information you need quickly without having to flip through every page.
+WHY WE USE INDEXES
+-	Faster Searches: Just like how an index in a book lets you find a topic quickly, an index in a database lets you find records faster.
+-	Efficient Sorting: Makes sorting records by a field faster.
+TYPES OF INDEXES
+-	Single Field Index: Indexes just one field.
+-	Compound Index: Indexes multiple fields together.
+CREATING INDEX
+-	db.collectionname.createIndex({ age: 1 });
+-	db.collectionname.createIndex({ name: 1, age: -1 });
+-	
+DROPPING AN INDEX
+-	db.collectionname.dropIndex({ age: 1 });
+-	db.collectionname.dropIndex();
+NOTE: Performance improvement by Index is only visible when the number of documents crosses 100K
+MONGOOSE
+Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It provides a schema-based solution to model your application data, making it easier to work with MongoDB in a Node.js environment.
+FEATURES
+-	Schema Definition: Define the structure of your documents and enforce data validation.
+-	Middleware: Support for pre and post hooks for various operations.
+-	Type Casting: Automatically cast data to the appropriate types.
+-	Query Building: Simplifies the process of building and executing queries.
+-	Plugins: Extend functionality with plugins.
+MONGOOSE MODELS
+It provides a schema-based solution to model your application data, making it easier to work with MongoDB in a Node.js environment, schema defines the structure of the documents within a collection. It specifies the fields, their types, and any validation rules or default values.
+MONGOOSE DATA TYPES
+-	String
+-	Number
+-	Boolean
+-	Date
+-	Buffer
+-	Mixed
+-	Object ID
+-	Array
+-	Decimal
+-	Map
+MONGOOSE RELATIONSHIPS / RELATIONSHIPS BETWEEN DOCUMENTS
+-	Referenced Relationships: Use when you want to keep related data in separate collections and link them using IDs. Example: Authors and Books.
+-	Embedded Relationships: Use when you want to store related data within the same document. Example: Blog posts and Comments.
+MONGOOSE CRUD OPERATIONS
+-	find
+-	findById
+-	findOne
+-	Create
+-	insertMany
+-	updateOne
+-	updateMany
+-	findByIdAndUpdate
+-	findByIdAndDelete
+-	deleteOne
+-	deleteMany
+NODE JS MODULES
+Modules in Node. js are like JavaScript libraries — a set of related functions that you can include in your application. Every Node. js file can be considered a module that can export code for reuse in other parts of the application.
+BUILT IN MODULES
+-	buffer: To handle binary data, it allows the creation and manipulation of Buffer objects.
+-	child_process: Provides the ability to spawn child processes.
+-	cluster: Enables Node.js applications to be divided into multiple processes.
+-	crypto: Provides cryptographic functionalities, including hash functions and HMAC.
+-	dns: Provides functionalities to perform DNS queries.
+-	events: Provides the EventEmitter class for handling events.
+-	fs: Provides functionalities for interacting with the file system.
+-	http: Used to create HTTP servers and clients.
+-	https: Used to create HTTPS servers and clients.
+-	net: Provides functionalities for creating servers and clients in a low-level network.
+-	os: Provides operating system-related utility methods and properties.
+-	path: Provides utilities for working with file and directory paths.
+-	querystring: Provides functionalities for parsing and formatting URL query strings.
+-	readline: Provides an interface for reading data from a readable stream one line at a time.
+-	stream: Provides APIs for stream handling, including readable and writable streams.
+-	string_decoder: Provides functionalities to decode buffer objects into strings.
+-	timers: Provides functionalities for scheduling functions to be called after a delay or at regular intervals.
+-	tls: Provides functionalities for implementing TLS and SSL protocols.
+-	tty: Provides functionalities for working with terminal interfaces.
+-	url: Provides utilities for URL resolution and parsing.
+-	util: Provides utility functions for various tasks.
+-	v8: Provides access to V8 engine specific functionalities.
+-	vm: Provides functionalities for compiling and running code within V8 Virtual Machine contexts.
+-	zlib: Provides functionalities for compression and decompression using the Gzip and Deflate/Inflate a
+CREATING MODULE
+EXPORTING MODULE
+IMPORTING MODULES NODE JS AND NPM
+CLI
+NPM PACKAGES: 
+LOCAL PACKAGES AND GLOBAL PACKAGES
+-	Local packages are installed in the node_modules directory within your project's root directory. These packages are only available to the project in which they are installed.
+
+-	Global packages are installed in a global directory (usually a directory accessible from any location on your system). These packages are available to any Node.js project on your computer.
+
+INSTALLING, UPDATING AND REMOVING MODULES UNING NPM
+PACKAGE.JSON FILE
+A package.json file is a fundamental part of working with Node.js, npm, and modern JavaScript. It's a manifest file that stores metadata about a project, including
+-	Name: The name of the package, which must be lowercase, one word, and may contain hyphens or underscores 
+-	Version: The version of the package, which must follow semantic versioning guidelines 
+-	Dependencies: Information about the dependencies of the project 
+-	License: Information about the license for the package, including any restrictions 
+-	Files: An array of files that need to be uploaded to the registry when the package is published 
+CREATING A NODE PACKAGE
+-	npm init -y
+-	Create a file named index.js
+function add(a, b) { 
+return a + b; 
+} 
+module.exports = add;
+PUBLISHING PACKAGE
+-	Edit package.json file
+-	Login to npm	//	npm login
+-	Publish	//	npm publish
+USING PUBLISHED PACKAGE
+-	npm  install __package name
+
+const add = require('add-numbers'); 
+console.log(add(2, 3));
+
+ROUTER OBJECT
+Router object is used to create modular, mountable route handlers. 
+-	const express = require('express'); 
+-	const app = express(); 
+-	const router = express.Router();
+
+-	router.get( ' / ' ,  (req, res) => { 
+res.send('Welcome to the home page!'); 
+});
+ROUTER METHODS
+-	router.get(path, callback)
+-	router.post(path, callback)
+-	router.put(path, callback)
+-	router.delete(path, callback)
+-	router.patch(path, callback)
+-	router.use(path, middleware)
+ROUTER RESPONSE METHODS
+-	res.send()
+-	res.json()
+-	res.status()
+-	res.render()
+-	res.sendFile()
+VIEW IN EXPRESS JS
+In express.js views are used to render dynamic content on the web pages. They are templates that are filled with data and then sent to the client as HTML. 
+EJS (EMBEDDED JAVASCRIPT) TEMPLATING ENGINE
+EJS is a simple templating language that lets you generate HTML markup with plain JavaScript.
+-	const path = require('path');
+-	app.set("views", path.join(__dirname, "views"));
+-	app.set("view engine", 'ejs');
+
+app.get('/', (req, res) => {
+res.render('index', {title:'homepage', message:'hello! this is ejs page'});
+})
+
+app.get('/', (req, res) => {
+    const list = ['rahul', 'namya', 'ejani'];
+    res.render('index', {list});
+})
+EJS TAGS
+-	<% 		'Scriptlet' tag, for control-flow, no output
+-	<%_ 		‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+-	<%= 		Outputs the value into the template (HTML escaped)
+-	<%- 		Outputs the unescaped value into the template
+-	<%# 		Comment tag, no execution, no output
+-	<%% 		Outputs a literal '<%'
+-	%> 		Plain ending tag
+-	-%> 		Trim-mode ('newline slurp') tag, trims following newline
+-	_%> 		‘Whitespace Slurping’ ending tag, removes all whitespace after it
+LINKING EXTERNAL CSS AND JS FILES
+-	Create and serve your public library and static file
+app.use(express.static(path.join(__dirname, "public")));
+
+-	Then link js and css files to EJS page
+DOT ENV
+UTF-8 – Unicode transformation format – 8 bit
+CREATING BUFER
+Creating buffer means converting the string(human readable) into binary data
+	const buffer = Buffer.from('Hello, World!', 'utf-8');
+BUFFER DECODING
+Decoding a buffer means converting the binary data in the buffer back into a human-readable string
+	const decodedString = buffer.toString('utf-8');
+DEBUGGERS
+-	Built in debugger
+-	IDE Debugger
+TRY CATCH
+try...catch is used in JavaScript to handle exceptions and errors gracefully
+
+CALLBACK FUNCTION
+A callback is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+EVENT EMITTERS
+Event Emitters in Node.js allow you to handle asynchronous events by emitting named events and listening for them with callback functions. You can register listeners using on and trigger events using emit. This pattern is fundamental in Node.js for managing asynchronous operations and building scalable applications
+-	require event emitter class
+const EventEmitter = require('events');
+-	creating event emitter 
+const emitter = new EventEmitter();
+-	registering event emitters
+emitter.on(‘event name’, functionname)
+-	emitting events
+app.get( ' /event ' , (req, res) => {
+   	   emitter.emit('event name');
+   res.send('event emitted');
+});
+
+FILE SYSTEM AND PATH MODULE
+INTRODUCTION TO FS MODULE
+The fs module in Node.js is a built-in module that allows you to work with the file system on your computer. It provides an API for interacting with files and directories, including reading and writing files, creating and deleting directories, and files anymore. This module is essential for handling file operations in Node.js applications.
+			const fs = require( ' fs ' );
+FEATURES
+-	Writing Files: Write data to a file, creating or overwriting it.
+
+fs.writeFile('hello.txt', JSON.stringify(data), (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send('file created');
+        }
+    })
+
+-	Reading Files: Read the contents of a file in different formats (e.g., text, JSON)
+-	
+ 		fs.readFile('hello.txt', 'utf-8', (err, data)=>{
+       				 if(err){
+           				 console.log(err);
+      				  }else{
+          				  res.send(data);
+        				}
+   			 })
+
+-	Appending Files: Append data to an existing file.
+
+fs.appendFile('hello.txt', 'hello world', (err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send('file appended');
+        }
+    })
+-	Deleting Files: Remove files from the file system.
+-	 fs.unlink('hello.txt', (err)=>{
+-	        if(err){
+-	            console.log(err);
+-	        }else{
+-	            res.send('file deleted');
+-	        }
+-	    })
+
+-	Rename Files: 
+
+ fs.rename('hello.txt', 'hello1.txt', (err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send('file renamed');
+        }
+    })
+
+-	Copy Files: 
+-	fs.copyFile('hello1.txt', 'hello2.txt', (err)=>{
+-	        if(err){
+-	            console.log(err);
+-	        }else{
+-	            res.send('file copied');
+-	        }
+-	    })
+
+-	Creating Directories: Create new directories
+
+ fs.mkdir('folder1', (err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send('folder created');
+        }
+    })
+
+-	Deleting Directories: Remove directories from the file system
+-	fs.rmdir('folder1', (err)=>{
+-	        if(err){
+-	            console.log(err);
+-	        }else{
+-	            res.send('folder deleted');
+-	        }
+-	    })
+
+-	Rename Directories:
+
+fs.rename('folder1', 'folder2', (err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send('folder renamed');
+        }
+    })
+
+
+

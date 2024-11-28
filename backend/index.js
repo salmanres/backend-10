@@ -7,6 +7,13 @@ const bodyParser = require('body-parser');
 const userData = require("./schema/UserSchema");
 require('./database/Connection');
 const path = require('path');
+const eventEmitter = require('events');
+const emitter = new eventEmitter();
+const fs = require('fs');
+
+// console.log(fs);
+
+
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, "public")));
@@ -14,6 +21,51 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 app.use(express.json());
+
+
+const t1 = ()=>{
+    console.log('task1');
+}
+const t2 = ()=>{
+    console.log('task2');
+}
+const t3 = ()=>{
+    console.log('task3');
+}
+
+emitter.on('event1', t1);
+emitter.on('event2', t2);
+emitter.on('event3', t3);
+
+
+app.get('/emitter', (req, res)=>{
+    emitter.emit('event3');
+    emitter.emit('event2')
+    res.send('executed');
+});
+
+app.get('/createfile', (req, res)=>{
+    const students = ['student1', 'student2', 'student3'];
+    fs.writeFile('file2.json', JSON.stringify(students), (err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send('file generated');
+        }
+    })
+})
+
+app.get('/readfile', (req, res)=>{
+    fs.readFile('file1.txt', 'utf-8', (err, x)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(x);
+        }
+    })
+})
+
+
 
 app.get('/', (req, res) => {
     const collection = ['book1', 'book2', 'book3'];
