@@ -15,6 +15,8 @@ function LandingPage() {
             <Link to='/userlist'>user list</Link>
             <br />
             <Link to='/whatsapp'>whatsapp</Link>
+            <br />
+            <Link to='/upload'>upload</Link>
         </Fragment>
     )
 }

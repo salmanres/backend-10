@@ -3,33 +3,85 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 4500;
 const cors = require('cors')
-const bodyParser = require('body-parser');
 const userData = require("./schema/UserSchema");
 require('./database/Connection');
 const path = require('path');
 const eventEmitter = require('events');
 const emitter = new eventEmitter();
 const fs = require('fs');
+const multer = require('multer');
+const filedata = require('./schema/FileSchema');
 
-// console.log(fs);
+
+
 
 
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(cors());
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);  // Date.now()
+    }
+});
+
+const upload = multer({ storage: storage });
 
 
-const t1 = ()=>{
+
+
+
+
+
+app.post('/upload', upload.array('files', 10), async (req, res) => {
+    // console.log(req.files);
+    if (req.files) {
+        try {
+            const fileDocs = req.files.map(file => ({
+                originalName: file.originalname,
+                mimeType: file.mimetype,
+                path: `/uploads/${file.filename}`,
+                size: file.size
+            }))
+            await filedata.insertMany(fileDocs);
+            res.send('files uploaded');
+        } catch (err) {
+            console.log(err);
+            res.send('internal server errror!');
+        }
+    } else {
+        res.send('files not uploaded');
+    }
+})
+
+app.get('/getfiles', async (req, res) => {
+    try {
+        const data = await filedata.find();
+        res.send(data);
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
+
+const t1 = () => {
     console.log('task1');
 }
-const t2 = ()=>{
+const t2 = () => {
     console.log('task2');
 }
-const t3 = ()=>{
+const t3 = () => {
     console.log('task3');
 }
 
@@ -38,38 +90,37 @@ emitter.on('event2', t2);
 emitter.on('event3', t3);
 
 
-app.get('/emitter', (req, res)=>{
+app.get('/emitter', (req, res) => {
     emitter.emit('event3');
     emitter.emit('event2')
     res.send('executed');
 });
 
-app.get('/createfile', (req, res)=>{
+app.get('/createfile', (req, res) => {
     const students = ['student1', 'student2', 'student3'];
-    fs.writeFile('file2.json', JSON.stringify(students), (err)=>{
-        if(err){
+    fs.writeFile('file2.json', JSON.stringify(students), (err) => {
+        if (err) {
             console.log(err);
-        }else{
+        } else {
             res.send('file generated');
         }
     })
 })
 
-app.get('/readfile', (req, res)=>{
-    fs.readFile('file1.txt', 'utf-8', (err, x)=>{
-        if(err){
+app.get('/readfile', (req, res) => {
+    fs.readFile('file1.txt', 'utf-8', (err, x) => {
+        if (err) {
             console.log(err);
-        }else{
+        } else {
             res.send(x);
         }
     })
 })
 
 
-
 app.get('/', (req, res) => {
     const collection = ['book1', 'book2', 'book3'];
-    res.render('index', {collection});
+    res.render('index', { collection });
 });
 
 app.post('/register', async (req, res) => {
@@ -86,7 +137,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.get('/getdata', async (req, res) => {
-    const data = await userData.find({"fullname": {"$regex": "Cha", "$options": "i"}});
+    const data = await userData.find({ "fullname": { "$regex": "Cha", "$options": "i" } });
     res.status(201).send(data);
 })
 
