@@ -1,9 +1,12 @@
 import axios from 'axios';
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
 
     const [data, setData] = useState();
+    const navigate = useNavigate();
 
     const getdata = (e) => {
         setData({
@@ -16,12 +19,16 @@ function LoginPage() {
     const handlelogin = async () => {
         try {
             const response = await axios.post('http://localhost:3500/login', data);
-            console.log(response.data);
-            if (response.status === 350) {
-                alert("login successful");
-            } else {
-                alert('invalid username/password');
-            }
+            console.log(response);
+            if(response.status == 200){
+                const token = response.data.token;
+                console.log(token);
+                Cookies.set('authToken', token, { expires: 1 });
+                alert(response.data.message);
+                navigate('/userlist');
+            }else{
+                alert(response.data.message);
+            }   
         } catch (err) {
             console.log(err);
         }

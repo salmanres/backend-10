@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function UserList() {
 
@@ -8,7 +9,12 @@ function UserList() {
 
     const getData = async () => {
         try {
-            const response = await axios.get('http://localhost:3500/getdata');
+            const token = Cookies.get('authToken');
+            const response = await axios.get('http://localhost:3500/getdata', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setData(response.data);
         } catch (e) {
             console.log(e);

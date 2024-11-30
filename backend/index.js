@@ -11,8 +11,15 @@ const emitter = new eventEmitter();
 const fs = require('fs');
 const multer = require('multer');
 const filedata = require('./schema/FileSchema');
-
-
+const bcrypt = require('bcrypt');
+// const crypto = require('crypto');
+// const secKey = crypto.randomBytes(64).toString('hex');
+// console.log(secKey);
+const secKey = process.env.SEC_KEY;
+const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
+const verifyToken = require('./auth/Jwt');
+const nodemailer = require('nodemailer');
 
 
 
@@ -25,6 +32,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+app.use(cookieParser());
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -37,6 +45,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'salmanmtaindia@gmail.com',
+        pass: 'Mta@india'
+    }
+});
 
 
 
@@ -136,29 +151,82 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.get('/getdata', async (req, res) => {
-    const data = await userData.find({ "fullname": { "$regex": "Cha", "$options": "i" } });
+app.get('/getdata', verifyToken, async (req, res) => {
+    const data = await userData.find({ "fullname": { "$regex": "", "$options": "i" } });
     res.status(201).send(data);
+})
+
+app.post('/sendemail', async (req, res) => {
+    const data = req.body;
+    console.log(data);
+    try {
+        const mailOptions = {
+            from: 'salmanmtaindia@gmail.com',
+            to: 'salmanmtaindia@gmail.com',
+            subject: data.subject,
+            text: data.message,
+            html: `<p>${data.message}</p>`
+        };
+        transporter.sendMail(mailOptions, (error, info)=>{
+            if(error){
+                console.log(error);
+            }else{
+                console.log('Email sent: ' + info.response);
+                res.status(200).send('email sent');
+            }
+        })
+    } catch (err) {
+        console.log(err);
+    }
 })
 
 
 
+// app.post('/login', async (req, res) => {
+//     const { email, password } = req.body;
+//     try {
+
+//         const udata = await userData.findOne({ email: 'aditya@test.com' })
+//         console.log(udata);
+//         const pwd = await bcrypt.compare(password, udata.password);
+//         console.log(pwd);
+//         if (!pwd) {
+//             res.status(350).json({ message: "incorrect username/password" });
+//         } else {
+//             const payload = { id: udata._id, email: udata.email };
+//             const token = jwt.sign(payload, secKey, { expiresIn: '1d' });
+//             res.status(200).json({ message: "login successful!", token });
+//         }
+//     } catch (e) {
+//         console.log(e);
+//     }
+
+// })
+
 app.post('/login', async (req, res) => {
-    const data = req.body;
+    const { email, password } = req.body;
     try {
-        const udata = await userData.findOne({ email: data.email })
+
+        const udata = await userData.findOne({ email: 'email' })
         console.log(udata);
-        console.log(data.password);
-        if (udata.password == data.password) {
-            res.status(350).json({ message: "login successful!" });
+        if (udata) {
+            if (udata.password == password) {
+                const payload = { id: udata._id, email: udata.email };
+                const token = jwt.sign(payload, secKey, { expiresIn: "1d" });
+                res.status(200).json({ message: 'login successful', token });
+            } else {
+                res.status(244).json({ message: 'invalid username/pass' });
+            }
         } else {
-            res.status(380).json({ message: "incorrect username/password" });
+            res.status(344).json({ message: 'user not found' });
         }
+
     } catch (e) {
         console.log(e);
     }
 
 })
+
 
 app.put('/editdata/:id', async (req, res) => {
     const { id } = req.params;

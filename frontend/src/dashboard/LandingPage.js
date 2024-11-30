@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function LandingPage() {
 
-   
+
 
     return (
         <Fragment>
@@ -16,7 +16,9 @@ function LandingPage() {
             <br />
             <Link to='/whatsapp'>whatsapp</Link>
             <br />
-            <Link to='/upload'>upload</Link>
+            <Link to='/upload'>upload</Link>\
+            <br />
+            <Link to='/form'>upload</Link>
         </Fragment>
     )
 }

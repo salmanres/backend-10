@@ -12,6 +12,7 @@ import UserList from './dashboard/UserList';
 import EditData from './dashboard/EditData';
 import Whatsapp from './dashboard/Whatsapp';
 import Upload from './dashboard/Upload';
+import Form from './dashboard/Form';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
         <Route path='/editdata/:id' element={<EditData />} />
         <Route path='/whatsapp' element={<Whatsapp />} />
         <Route path='/upload' element={<Upload />} />
+        <Route path='/form' element={<Form />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
